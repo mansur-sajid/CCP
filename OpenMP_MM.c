@@ -34,7 +34,12 @@ int main() {
         result[i] = (int *)calloc(N, sizeof(int)); // Initialize result matrix with zeros
     }
 
-    // Initialize matrices A and B with values (if needed)
+    for (int i = 0; i < N; i++) {
+    for (int j = 0; j < N; j++) {
+        matrixA[i][j] = 1;
+        matrixB[i][j] = 2;
+    }
+}
 
     // Perform matrix multiplication using Blocked Matrix Multiplication and OpenMP
     matrix_multiply_parallel(matrixA, matrixB, result);
