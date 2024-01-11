@@ -1,6 +1,6 @@
-
 #include <stdio.h>
 #include <stdlib.h>
+#include <cuda_runtime.h>
 
 #define N 10000
 #define BLOCK_SIZE 16
@@ -47,11 +47,33 @@ int main() {
     dim3 dimGrid((N + BLOCK_SIZE - 1) / BLOCK_SIZE, (N + BLOCK_SIZE - 1) / BLOCK_SIZE, 1);
     dim3 dimBlock(BLOCK_SIZE, BLOCK_SIZE, 1);
 
+    // Create CUDA events for timing
+    cudaEvent_t start, stop;
+    cudaEventCreate(&start);
+    cudaEventCreate(&stop);
+
+    // Record the start event
+    cudaEventRecord(start, 0);
+
     // Launch kernel
     matrixMultiply<<<dimGrid, dimBlock>>>(d_a, d_b, d_c, N);
 
+    // Record the stop event
+    cudaEventRecord(stop, 0);
+    cudaEventSynchronize(stop);
+
     // Copy result from device to host
     cudaMemcpy(h_c, d_c, size, cudaMemcpyDeviceToHost);
+
+    // Calculate elapsed time
+    float elapsedTime;
+    cudaEventElapsedTime(&elapsedTime, start, stop);
+
+    printf("Time taken: %f ms\n", elapsedTime);
+
+    // Free CUDA events
+    cudaEventDestroy(start);
+    cudaEventDestroy(stop);
 
     // Free device memory
     cudaFree(d_a);
