@@ -34,6 +34,7 @@ int main() {
         for (int j = 0; j < N; j++) {
             matrixA[i][j] = 1;
             matrixB[i][j] = 2;
+	    result[i][j] = 0;
         }
     }
     start = clock();
