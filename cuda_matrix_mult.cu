@@ -30,8 +30,8 @@ int main() {
 
     // Initialize matrices
     for (int i = 0; i < N * N; ++i) {
-        h_a[i] = rand() % 10;
-        h_b[i] = rand() % 10;
+        h_a[i] = 1;
+        h_b[i] = 2;
     }
 
     // Allocate device memory
@@ -70,6 +70,8 @@ int main() {
     cudaEventElapsedTime(&elapsedTime, start, stop);
 
     printf("Time taken: %f ms\n", elapsedTime);
+    printf("First element of result matrix: %d\n", h_c[0]);
+    printf("Last element of result matrix: %d\n", h_c[N * N - 1]);
 
     // Free CUDA events
     cudaEventDestroy(start);
