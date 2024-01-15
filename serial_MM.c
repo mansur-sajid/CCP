@@ -42,7 +42,7 @@ int main() {
     end = clock();
     cpu_time_used = ((double) (end - start)) / CLOCKS_PER_SEC;
     printf("CPU time used: %f seconds\n", cpu_time_used);
-    printf("Last Element of resultant matrix: %f", result[N-1][N-1]);
+    printf("Last Element of resultant matrix: %d", result[N-1][N-1]);
 
     // Printing matrices is omitted due to their large size
 
