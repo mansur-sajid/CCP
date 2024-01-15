@@ -247,6 +247,7 @@ int main() {
     double execution_time = end_time - start_time;
 
     printf("Matrix multiplication executed using Strassen's algorithm in %f seconds.\n", execution_time);
+    printf("Last element of resultant matrix: %f", C[N-1][N-1]);
 
     // Free allocated memory
     free(A);
