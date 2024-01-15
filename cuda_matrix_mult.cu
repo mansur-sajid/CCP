@@ -69,9 +69,8 @@ int main() {
     float elapsedTime;
     cudaEventElapsedTime(&elapsedTime, start, stop);
 
-    printf("Time taken: %f ms\n", elapsedTime);
-    printf("First element of result matrix: %d\n", h_c[0]);
-    printf("Last element of result matrix: %d\n", h_c[N * N - 1]);
+    printf("Time taken: %f s\n", elapsedTime/1000);
+    printf("Last element of resultant matrix: %d\n", h_c[N * N - 1]);
 
     // Free CUDA events
     cudaEventDestroy(start);
